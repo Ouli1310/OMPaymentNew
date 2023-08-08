@@ -1,0 +1,33 @@
+.card-container {
+    padding: 0px;
+    margin-top: 0px;
+    align-self: center;
+    position: relative;
+    }
+    .form-content{
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 10px;
+    }
+    .toolbar{
+        text-align: center;
+        background-color: white;
+    
+    }
+    
+    .title-center{
+        flex: 1 1 auto;
+    }
+    .content {
+        align-self: center;
+        padding: 30px;
+        text-align: center;
+    }
+    .mat-card {
+        align-self: center;
+        height: auto;
+        margin-top: 130px;
+        width: 350px;
+        border-radius: 20px;
+        
+    }

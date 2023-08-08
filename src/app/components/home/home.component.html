@@ -1,0 +1,95 @@
+<!--
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  
+      <a class="navbar-brand" href="#">
+        <img src="../../../assets/images/Logo-Trans.png" width="200" height="40" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">
+            <i class="pi pi-home" style="font-size: 1.3rem; color: red;"> Home</i>
+          </a>
+          <a class="nav-item nav-link" *ngIf="(isLogged$ | async)" href="/transactions">
+            <i class="pi pi-bookmark-fill" style="font-size: 1.3rem; color: red;"> Transactions</i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="form-inline my-0 my-lg-0">
+          <button  *ngIf="!(isLogged$ | async)" pButton type="button" class="p-button-success p-button-text" label="Connexion" icon="pi pi-sign-in" iconPos="right" (click)="login()"> </button>
+          <button *ngIf="(isLogged$ | async)  && (profil == 'AD')"  pButton type="button" class="p-button-warning p-button-text" label="Nouvel utilisateur" icon="pi pi-user-plus" iconPos="right" (click)="register()"> </button>
+          <button  *ngIf="isLogged$ | async"  pButton type="button" class="p-button-danger p-button-text" label="Deconnexion" icon="pi pi-sign-out" iconPos="right" (click)="logout()"> </button>
+      </div>
+    </nav>
+    
+    <div class="title p-3 text-center bg-light">
+      <h1 class="mb-7">Plateforme de Paiement Orange Money</h1>
+      <img src="../../../assets/images/MicrosoftTeams-image.png" width="150" height="50" /> 
+      <h4 class="mb-3"></h4>
+    </div>
+  <!-- Jumbotron 
+  
+  <!-- Jumbotron 
+  <section id="presentation">
+   
+  </section>
+      <router-outlet></router-outlet>
+  </div> -->
+
+
+ 
+
+
+<!-- <div class="wrapper">
+    <div class="sidebar" data-color="red" data-image="">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(assets/img/sidebar-5.jpg)"></div>
+    </div>
+  
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <router-outlet></router-outlet>
+    </div>
+  
+  </div> -->
+  <div class="content">
+    <div class="row" fxLayout="row" fxLayoutAlign="center center">
+        <mat-card class="example-card">
+            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <mat-card-title>Shiba Inu</mat-card-title>
+            <mat-card-content>
+              <p>This card has divider and indeterminate progress as footer</p>
+              <p>{{ longText }}</p>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+            <mat-card-footer>
+             
+            </mat-card-footer>
+          </mat-card>
+        
+          <mat-card class="example-card">
+            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <mat-card-title>Shiba Inu</mat-card-title>
+            <mat-card-content>
+              <p>This card has divider and indeterminate progress as footer</p>
+              <p>{{ longText }}</p>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+            <mat-card-footer>
+             
+            </mat-card-footer>
+          </mat-card>
+      </div>
+     
+</div>
+ 

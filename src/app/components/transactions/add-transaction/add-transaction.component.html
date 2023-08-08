@@ -1,0 +1,113 @@
+
+<div class="container">
+
+  <div class="row" class="mb-5 my-5">
+    <button pButton type="button" icon="pi pi-list" label="Transactions" 
+    class="p-button-raised p-button-danger p-button-rounded p-button"
+     iconPos="left" (click)="goToTransactions()"></button>
+  </div>
+
+  <!-- 
+
+
+ 
+
+
+  <div class="row">
+    <div class="mat-card" style="width: 20%; margin-right: 20px;">
+      
+        
+          <form [formGroup]="firstForm" fxLayoutAlign="stretch" fxLayout="column" style=" padding: 30px;">
+            <input matInput id="methode" type="text" formControlName = "methode" required placeholder="Méthode" value="Méthode: {{methodeChoisie}}" readonly style="margin-bottom: 30px;">
+      
+    
+          <input matInput id="idP" type="text" formControlName = "idP" placeholder="Type" value="Téléphone: {{idPartner}}" readonly style="margin-bottom: 30px;">
+
+          <input matInput id="code" type="text" formControlName = "code" placeholder="Type" value="Code: {{codeP}}" readonly>
+     
+    
+          </form>
+
+    </div>
+   
+  <div class="mat-card" style="width: 70%; ">
+    <mat-tab-group>
+    
+     
+      <mat-tab label="PNR ">
+           
+        <form [formGroup]="fifthForm" class="form-content"  fxLayout="raw">
+            <mat-form-field class="field">
+              <input matInput id="reference" type="text" formControlName = "reference" required placeholder="PNR">
+              <div class="alert-danger" *ngIf="k['reference'].errors && k['reference'].touched">
+                  <div *ngIf="k['reference'].errors?.['reference']">PNR requis</div>
+                </div>
+            </mat-form-field>
+       
+        </form>
+        
+      </mat-tab>
+          <mat-tab label="Téléphone Client"> 
+            <form [formGroup]="secondeForm" class="form-content"  fxLayout="raw">
+          
+              <mat-form-field class="field">
+                <input matInput id="idClient" type="text" formControlName = "idClient" required placeholder="Téléphone Client">
+                <div class="alert-danger" *ngIf="g['idClient'].errors && g['idClient'].touched">
+                    <div *ngIf="g['idClient'].errors?.['idClient']">Téléphone du client est requis</div>
+                  </div>
+              </mat-form-field>
+      
+              <mat-form-field class="field" *ngIf="methodeChoisie == 'QRCODE'">
+                <input matInput id="otpClient" type="text" formControlName = "otpClient" required placeholder="OTP Client">
+                <div class="alert-danger" *ngIf="g['otpClient'].errors && g['otpClient'].touched">
+                    <div *ngIf="g['otpClient'].errors?.['otpClient']">OTP du client est requis</div>
+                  </div>
+              </mat-form-field>
+            </form>
+      
+          </mat-tab>
+          
+          <mat-tab label="Montant Transaction"> 
+            <form [formGroup]="forthForm" class="form-content"  fxLayout="raw">
+              <mat-form-field class="field">
+                <input matInput id="value" type="text" formControlName = "value" required placeholder="Montant">
+                <div class="alert-danger" *ngIf="j['value'].errors && j['value'].touched">
+                    <div *ngIf="j['value'].errors?.['value']">Montant Transaction est requis</div>
+                  </div>
+              </mat-form-field> XOF
+      
+            
+            </form>
+      
+            <button mat-raised-button class="button" (click)="initTransaction()">
+              Ajouter
+        </button>
+        
+          </mat-tab>
+      
+         
+          
+        </mat-tab-group>
+  </div>
+  
+
+
+  
+</div>-->
+
+
+
+
+
+<div style=" text-align: center;">
+
+ 
+ <!-- <img *ngIf="qrCodeImage !== undefined && qrCodeImage !== ''" [src]="qrCodeImage" alt="QR Code"> -->
+
+ <img [src]="safeImageUrl" alt="QR Code">
+
+
+</div>
+
+
+</div>

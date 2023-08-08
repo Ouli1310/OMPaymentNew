@@ -1,0 +1,267 @@
+
+<div class="container">
+
+    <div class="row" class="mb-5 my-5">
+      <button pButton type="button" icon="pi pi-list" label="CashIns" 
+      class="p-button-raised p-button-danger p-button-rounded p-button"
+       iconPos="left" (click)="goToCashIns()"></button>
+    </div>
+   
+    <div class="row">
+
+    <div class="mat-card" style="width: 20%; margin-right: 20px;">
+      
+        
+      <form [formGroup]="thirdForm" fxLayoutAlign="stretch" fxLayout="column" style=" padding: 30px;">
+        
+  
+
+      <input matInput id="idP" type="text" formControlName = "idP" placeholder="Type" value="Téléphone: {{idPartner}}" readonly>
+ 
+
+      </form>
+
+  </div>
+  <div class="mat-card" style="width: 70%;">
+    <mat-tab-group>
+
+
+      <mat-tab label="Méthode CashIn"> 
+        <form [formGroup]="firstForm" class="form-content"  fxLayout="raw">
+          <mat-form-field class="field">
+            <mat-select id="methode" type="text" formControlName="methode" placeholder="methode" (selectionChange)="getMethodeChoisie($event)">
+              <mat-option *ngFor="let m of methodes" [value]=m>
+                {{m}}
+              </mat-option>
+            </mat-select>
+           <div class="alert-danger" *ngIf="f['methode'].errors && f['methode'].touched">
+                <div *ngIf="f['methode'].errors?.['required']">Méthode est requise</div>
+                
+              </div>
+  
+          </mat-form-field>
+        </form>
+  </mat-tab>
+
+
+ 
+
+
+    
+  <mat-tab label="Informations de la transaction">
+
+    <form *ngIf="methodeChoisie != 'REMBOURSEMENT'" [formGroup]="fifthForm" class="form-content"  fxLayout="raw">
+      <mat-form-field class="field">
+        <input matInput id="pnr" type="text" formControlName = "pnr" required placeholder="Objet">
+        <div class="alert-danger" *ngIf="k['pnr'].errors && k['pnr'].touched">
+            <div *ngIf="k['pnr'].errors?.['pnr']">PNR est requis</div>
+          </div>
+      </mat-form-field>
+    </form>
+       
+    <form *ngIf="methodeChoisie == 'REMBOURSEMENT'" [formGroup]="fifthForm" class="form-content"  fxLayout="raw">
+    <div>
+      <mat-form-field class="field" >
+       
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getPNRChoisi($event)">
+          <mat-option *ngFor="let option of filteredOptions | async"  [value]="option.reference">
+            {{option.reference}}
+           </mat-option>
+        </mat-autocomplete>
+        <input type="text"
+        placeholder="Choisir pnr"
+        aria-label="text"
+        matInput
+        formControlName = "pnr" required
+        [matAutocomplete]="auto">
+ 
+  
+      </mat-form-field>
+
+      
+    
+  
+    </div>
+
+    <div>
+      <mat-list *ngFor="let t of transactionsParPNR" style="width: 400px;">
+        <mat-list-item >{{t.transactionId}}   {{t.value}} XOF  {{t.customerId}}</mat-list-item>
+    
+      </mat-list>
+    </div>
+    
+    
+
+     
+     
+     
+    <!--  <mat-form-field class="field">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option  *ngFor="let option of filteredTrans | async">
+           {{option}}
+           
+          </mat-option>
+        </mat-autocomplete>
+        <input type="text"
+        placeholder="Choisir f"
+        aria-label="text"
+        matInput
+        formControlName = "reference" required
+        [matAutocomplete]="auto">
+      </mat-form-field>
+-->
+    
+   
+    </form>
+
+ 
+     
+  </mat-tab>
+  
+
+
+      <mat-tab label="Informations du client" *ngIf="methodeChoisie != 'BULK'"> 
+
+        <form *ngIf="methodeChoisie == 'DEPOT'" [formGroup]="secondeForm" class="form-content"  fxLayout="raw">
+          
+
+          <mat-form-field class="field">
+            <input matInput id="idClient" type="text" formControlName = "idClient" placeholder="Téléphone Client" required>
+            <div class="alert-danger" *ngIf="g['idClient'].errors && g['idClient'].touched">
+              <div *ngIf="g['idClient'].errors?.['idClient']">Téléphone Client est requis</div>
+            </div>
+
+          </mat-form-field>
+
+        </form>
+
+        <form *ngIf="methodeChoisie == 'REMBOURSEMENT'" [formGroup]="secondeForm" class="form-content"  fxLayout="raw">
+       
+          <mat-form-field class="field">
+    
+          
+       
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getNumeroClientChoisi($event)">
+                <mat-option *ngFor="let option of transactionsParPNR"  [value]="option.customerId">
+                  {{option.customerId}}
+                 </mat-option>
+              </mat-autocomplete>
+              <input type="text"
+              placeholder="Choisir téléphone du client"
+              aria-label="text"
+              matInput
+              formControlName = "idClient" required
+              [matAutocomplete]="auto">
+       
+      
+          </mat-form-field>
+
+  
+        </form>
+  
+      </mat-tab>
+      
+      <mat-tab label="Montant cashIn" *ngIf="methodeChoisie != 'BULK'"> 
+
+        <form *ngIf="methodeChoisie == 'DEPOT'" [formGroup]="forthForm" class="form-content"  fxLayout="raw">
+          
+        
+
+          <mat-form-field class="field">
+            <input matInput id="value" type="text" formControlName = "value" required placeholder="Montant" >
+            <div class="alert-danger" *ngIf="j['value'].errors && j['value'].touched">
+              <div *ngIf="j['value'].errors?.['value']">Montant est requis</div>
+            </div>
+          </mat-form-field>
+          XOF
+        
+        
+        </form>
+
+        <form *ngIf="methodeChoisie == 'REMBOURSEMENT'" [formGroup]="forthForm" class="form-content"  fxLayout="raw">
+          
+          <mat-form-field class="field">
+            <mat-label>Montant Initial </mat-label>
+            <input matInput id="montantValue" type="text" formControlName = "montantValue" value="{{montantTrans}}" readonly>
+            
+           
+          </mat-form-field> XOF
+
+          <mat-form-field class="field">
+            <mat-label>CashIn Initial </mat-label>
+            <input matInput id="cashInValue" type="text" formControlName = "cashInValue" value="{{montantCashIn}}" readonly>
+            
+           
+          </mat-form-field> XOF
+
+          <mat-form-field class="field">
+            <mat-label>Nouveau CashIn</mat-label>
+            <input matInput id="value" type="text" formControlName = "value" required placeholder="Montant" >
+            <div class="alert-danger" *ngIf="j['value'].errors && j['value'].touched">
+              <div *ngIf="j['value'].errors?.['value']">Nouveau montant est requis</div>
+            </div>
+          </mat-form-field> XOF
+
+        
+        </form>
+        <button mat-raised-button class="button" (click)="initCashIn()">
+          Ajouter
+   </button>
+  
+      </mat-tab>
+
+      <mat-tab label="Informations Bulk CashIns" *ngIf="methodeChoisie == 'BULK'">
+ 
+        <form [formGroup]="formList" fxLayout="raw" style="padding: 30px;">
+         
+          <div formArrayName="forms">
+            <div *ngFor="let form of forms.controls; let i = index">
+              <div [formGroupName]="i">
+
+                <mat-form-field class="field">
+                  <mat-label>Téléphone Client </mat-label>
+                  <input matInput id="idClient" type="text" formControlName = "idClient">
+                  
+                 
+                </mat-form-field> 
+      
+                <mat-form-field class="field">
+                  <mat-label>Montant </mat-label>
+                <input matInput type="text" id="montant" formControlName="montant">
+              </mat-form-field> XOF
+
+              <button mat-icon-button (click)="addForm()">
+                <mat-icon>add_circle</mat-icon>
+              </button>
+
+              <button mat-icon-button (click)="removeForm(i)">
+                <mat-icon>remove_circle</mat-icon>
+              </button>
+           
+              </div>
+            </div>
+          </div>
+          
+         
+         
+         
+        </form>
+
+        <input type="file" id="fileInput" style="display: none" (change)="onFileChange($event)">
+
+       
+        <button mat-raised-button class="button1" (click)="onButtonClick()">
+          Import
+    </button>
+        <button mat-raised-button class="button" (click)="onSubmit()">
+          Ajouter
+    </button>
+      </mat-tab>
+    
+        
+  
+    </mat-tab-group>
+    
+  </div>
+  </div>
+  

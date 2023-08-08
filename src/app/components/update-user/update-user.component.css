@@ -1,0 +1,36 @@
+.card-container {
+    padding: 0px;
+    margin-top: 0px;
+    position: relative;
+    align-self: center;
+    }
+ 
+    .form-content{
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 10px;
+    }
+    .toolbar{
+        text-align: center;
+        background-color: white;
+    
+    }
+    .mat-button{
+       background-color: rgb(41, 117, 240);
+       width: 80px;
+       align-self: center;
+    }
+    .title-center{
+        flex: 1 1 auto;
+    }
+    .formulaire {
+        align-self: center;
+    }
+    .mat-card {
+        align-self: center;
+        height: auto;
+        margin-top: 130px;
+        width: 500px;
+        border-radius: 20px;
+        
+    }

@@ -1,0 +1,30 @@
+<div class="card-container" fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+    
+    <mat-card class="mat-card" > 
+
+        <div class="formulaire">
+            <mat-toolbar class="toolbar">
+              <!--<img mat-card-avatar
+              id="profile-img"
+              src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+              class="profile-img-card"align-items="center"
+            /> -->
+            <mat-card-title class="title-center">
+              <span>Profil</span>
+            </mat-card-title> 
+            
+              
+          </mat-toolbar>
+
+          <div class="content">
+            <mat-card-content >
+                <p>Prénom: {{currentUser.firstName}}</p>
+                <p>Nom: {{currentUser.lastName}}</p>
+                <p>MSISDN: {{currentUser.msisdn}}</p>
+                <p>Code marchand: {{currentUser.code}}</p>
+                <p>Profil: {{profil.name}}</p>
+                <p>Balance: {{balance.value}} {{balance.unit}}</p>
+            </mat-card-content>
+          </div>
+
+       

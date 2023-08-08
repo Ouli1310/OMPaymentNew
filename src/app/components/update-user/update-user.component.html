@@ -1,0 +1,263 @@
+
+  
+ <div class="card-container" fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+  
+  <mat-card> 
+    
+    
+   <!-- <img mat-card-image class="home-image" src="../../../assets/images/logo_AirSenegal.jpg" fxFlex="50%">
+-->
+    <div class="formulaire">
+  
+  
+    <mat-toolbar class="toolbar">
+        <!--<img mat-card-avatar
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"align-items="center"
+      /> -->
+      <mat-card-title class="title-center">
+        <span>Mis à jour utilisateur</span>
+      </mat-card-title>
+      
+    
+
+    
+  
+      
+        
+    </mat-toolbar>
+
+    <form *ngIf="!isSuccessful" [formGroup]="updateForm" class="form-content" fxLayoutAlign="stretch" fxLayout="column"  (ngSubmit)="updateForm.valid && updatedUser(id)" novalidate>
+      <mat-form-field>
+        <input matInput id="firstName" type="text" formControlName = "firstName" required minlength="3" maxlength="20" placeholder="firstname" [(ngModel)]="updateUser.firstName">
+        <div class="alert-danger" *ngIf="f['firstName'].errors && f['firstName'].touched">
+            <div *ngIf="f['firstName'].errors?.['required']">Firstname is required</div>
+            <div *ngIf="f['firstName'].errors?.['minlength']">
+              Firstname must be at least 3 characters
+            </div>
+            <div *ngIf="f['firstName'].errors?.['maxlength']">
+              Firstname must be at most 20 characters
+            </div>
+          </div>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="lastName" type="text" formControlName = "lastName" required minlength="3" maxlength="20" placeholder="lastname" [(ngModel)]="updateUser.lastName">
+          <div class="alert-danger" *ngIf="f['lastName'].errors && f['lastName'].touched">
+            <div *ngIf="f['lastName'].errors?.['required']">Lastname is required</div>
+            <div *ngIf="f['lastName'].errors?.['minlength']">
+              Lastname must be at least 3 characters
+            </div>
+            <div *ngIf="f['lastName'].errors?.['maxlength']">
+              Lastname must be at most 20 characters
+            </div>
+          </div>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="email" type="email" formControlName = "email" required placeholder="email" [(ngModel)]="updateUser.email">
+          <div class="alert-danger" *ngIf="f['email'].errors && f['email'].touched">
+            <div *ngIf="f['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="f['email'].errors?.['email']">Email must be a valid email address</div>
+          </div>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select id="profil" type="text" formControlName="profil" placeholder="profil" (selectionChange)="getProfilChoisi($event)">
+          <mat-option *ngFor="let p of profils" [value]=p>
+            {{p.name}}
+          </mat-option>
+        </mat-select>
+       <div class="alert-danger" *ngIf="f['profil'].errors && f['profil'].touched">
+            <div *ngIf="f['profil'].errors?.['required']">Profil is required</div>
+            
+          </div>
+      </mat-form-field>
+      <mat-form-field *ngIf="profilChoisi?.code !='DAF'">
+        <mat-select id="entite" type="text" formControlName="entite" placeholder="entite" [(value)]="entiteUser.name" (selectionChange)="getEntiteChoisi($event)">
+          <mat-option *ngFor="let e of entites" [value]=e>
+            {{e.name}}
+          </mat-option>
+        </mat-select>
+       <div class="alert-danger" *ngIf="f['entite'].errors && f['entite'].touched">
+            <div *ngIf="f['entite'].errors?.['required']">Entite is required</div>
+            
+          </div>
+      </mat-form-field>
+      <mat-form-field *ngIf="profilChoisi?.code !='DAF'">
+        <input matInput id="msisdn" type="text" formControlName = "msisdn" minlength="9" maxlength="9" placeholder="msisdn" [(ngModel)]="updateUser.msisdn">
+          <div class="alert-danger" *ngIf="f['msisdn'].errors && f['msisdn'].touched">
+            <div *ngIf="f['msisdn'].errors?.['required']">MSISDN is required</div>
+            <div *ngIf="f['msisdn'].errors?.['minlength']">
+              MSISDN must be at least 7 characters
+            </div>
+            <div *ngIf="f['msisdn'].errors?.['maxlength']">
+              MSISDN must be at most 7 characters
+            </div>
+          </div>
+      </mat-form-field>
+      <mat-form-field *ngIf="profilChoisi?.code !='DAF'">
+        <input matInput id="code" type="text" formControlName = "code" placeholder="code marchand" [(ngModel)]="updateUser.code">
+          <div class="alert-danger" *ngIf="f['code'].errors && f['code'].touched">
+            <div *ngIf="f['code'].errors?.['required']">MSISDN is required</div>
+           
+          </div>
+      </mat-form-field>
+     
+      <button [disabled]="updateForm.invalid" class="mat-button" mat-raised-button  type="submit" >Modifier</button>
+      
+    </form>
+ 
+    </div>
+  </mat-card>
+ 
+
+</div>
+
+
+
+<!-- <div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="firstName">Firstname</label>
+        <input
+          type="text"
+          class="form-control"
+          name="firstName"
+          [(ngModel)]="form.firstName"
+          required
+          minlength="3"
+          maxlength="20"
+          #firstName="ngModel"
+        />
+        <div class="alert-danger" *ngIf="firstName.errors && f.submitted">
+          <div *ngIf="firstName.errors['required']">Firstname is required</div>
+          <div *ngIf="firstName.errors['minlength']">
+            Firstname must be at least 3 characters
+          </div>
+          <div *ngIf="firstName.errors['maxlength']">
+            Firstname must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="lastName">Lastname</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            [(ngModel)]="form.lastName"
+            required
+            minlength="3"
+            maxlength="20"
+            #lastName="ngModel"
+          />
+          <div class="alert-danger" *ngIf="lastName.errors && f.submitted">
+            <div *ngIf="lastName.errors['required']">Lastname is required</div>
+            <div *ngIf="lastName.errors['minlength']">
+              Lastname must be at least 3 characters
+            </div>
+            <div *ngIf="lastName.errors['maxlength']">
+              Lastname must be at most 20 characters
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          email
+          #email="ngModel"
+        />
+        <div class="alert-danger" *ngIf="msisdn.errors && f.submitted">
+          <div *ngIf="msisdn.errors['required']">Email is required</div>
+          <div *ngIf="msisdn.errors['email']">
+            Email must be a valid email address
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="msisdn">MSISDN</label>
+          <input
+            type="text"
+            class="form-control"
+            name="msisdn"
+            [(ngModel)]="form.msisdn"
+            required
+            length="7"
+            #msisdn="ngModel"
+          />
+          <div class="alert-danger" *ngIf="msisdn.errors && f.submitted">
+            <div *ngIf="email.errors['required']">MSISDN is required</div>
+            <div *ngIf="email.errors['length']">
+              MSISDN must be 7 characters
+            </div>
+          </div>
+        </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div class="alert-danger" *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="profil">Profil</label>
+          <input
+            type="text"
+            class="form-control"
+            name="profil"
+            [(ngModel)]="form.profil"
+            required
+            minlength="3"
+            maxlength="20"
+            #firstName="ngModel"
+          />
+          <div class="alert-danger" *ngIf="profil.errors && f.submitted">
+            <div *ngIf="profil.errors['required']">Profil is required</div>
+            <div *ngIf="profil.errors['minlength']">
+              Profil must be at least 3 characters
+            </div>
+            <div *ngIf="profil.errors['maxlength']">
+              Profil must be at most 20 characters
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+  </div>
+</div>
+-->

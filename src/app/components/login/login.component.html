@@ -1,0 +1,71 @@
+
+  <div class="card-container" fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+ 
+      
+     
+    
+    <mat-card class="mat-card" > 
+      
+      <!--<img mat-card-image class="home-image" src="../../../assets/images/logo_AirSenegal.jpg" fxFlex="50%">
+      -->
+ <div class="formulaire">
+  <mat-toolbar class="toolbar">
+    <!--<img mat-card-avatar
+    id="profile-img"
+    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+    class="profile-img-card"align-items="center"
+  /> -->
+  <mat-card-title class="title-center">
+    <span>Connexion</span>
+  </mat-card-title>
+   
+ 
+
+
+
+  
+    
+</mat-toolbar>
+<form *ngIf="!isLoggedIn" [formGroup]="loginForm" class="form-content" fxLayoutAlign="stretch" fxLayout="column"  (ngSubmit)="loginForm.valid && onSubmit()" novalidate>
+    <mat-form-field>
+        <input matInput id="email" type="email" formControlName = "email" required placeholder="email">
+          <div class="alert-danger" *ngIf="f['email'].errors && f['email'].touched">
+            <div *ngIf="f['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="f['email'].errors?.['email']">L'email doit être valide.</div>
+          </div>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="password" type="password" formControlName = "password" required minlength="8" maxlength="20" placeholder="mot de passe">
+          <div class="alert-danger" *ngIf="f['password'].errors && f['password'].touched">
+            <div *ngIf="f['password'].errors?.['required']">Password is required</div>
+            <div *ngIf="f['password'].errors?.['minlength']">
+              Password must be at least 8 characters
+            </div>
+            <div *ngIf="f['password'].errors?.['maxlength']">
+              Password must be at most 20 characters
+            </div>
+          </div>
+      </mat-form-field>
+      <button [disabled]="loginForm.invalid" class="mat-button" mat-raised-button  type="submit" >Login</button>
+      <a class="link" href="/ompayment/resetPassword">Mot de passe oublié ?</a>
+   
+    </form>
+ 
+
+
+ </div>
+      
+     
+     <div>
+
+     </div>
+     
+        </mat-card>
+
+  
+</div>
+
+
+    
+
+        

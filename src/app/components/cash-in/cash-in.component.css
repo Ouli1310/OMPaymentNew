@@ -1,0 +1,33 @@
+.container {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+
+}
+.mat-card {
+    width: 90%;
+    margin-bottom: 10px;
+}
+.form-content{
+    padding: 30px;
+    width: 200px;
+}
+.button {
+    float: right;
+    width: 80px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.button1 {
+    width: 80px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.field {
+    margin-right: 30px;
+}
+
+.p-button-raised {
+    margin-top: 100px;
+}

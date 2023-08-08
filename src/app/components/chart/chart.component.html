@@ -1,0 +1,124 @@
+<div class="content">
+
+  <div class="card-container" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="mat-card" style="width: 220px;" > 
+      <span>Nombre de Transactions: {{transactions?.length}}</span>
+    </mat-card>
+
+
+  </div>
+
+  <div class="row">
+    <mat-form-field class="field" appearance="fill" *ngIf="profil == 'AD'">
+      <mat-autocomplete #auto="matAutocomplete" [(ngModel)]="entiteName" ngDefaultControl (optionSelected)="getNameChoisi($event)">
+        <mat-option *ngFor="let option of filteredOptions | async"  [value]="option.name">
+          {{option.name}}/{{option?.msisdn}}
+         </mat-option>
+      </mat-autocomplete>
+      <input type="text"
+           placeholder="Filtre par Agence"
+           aria-label="Number"
+           matInput
+           [formControl]="entiteControl"
+           [matAutocomplete]="auto">
+    </mat-form-field>
+
+    <mat-form-field class="field" appearance="fill">
+      <mat-label>Choisir une date</mat-label>
+      <input matInput [matDatepicker]="picker"  [formControl]="dateControl">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  
+
+  <div class="somme" fxLayoutAlign="center center">
+    <mat-card class="mat-card3" > 
+      <span>Total Activité: {{sommeTotale}}</span> <br>
+      <span *ngIf="profil == 'AD'">Commission: 1%</span><br>
+      <span *ngIf="profil == 'AD'">Chiffre d'Affaire: {{recette}}</span>
+    </mat-card>
+  </div>
+
+  <div class="row" fxLayout="row" fxLayoutAlign="center center">
+   
+    <mat-card class="figure">
+      <div class="header">
+        <h4 class="title">Status des transactions</h4>
+        <p class="category"></p>
+      </div>
+      <x-chartist 
+      [type]="type"
+      [data]="data1"
+      [options]="options"
+      [events]="events"
+     ></x-chartist>
+     <div class="footer">
+      <div class="legend">
+        <span style="margin-right: 40px;"  *ngFor="let l of list1 | keyvalue"><i>
+          {{l.key}}: {{l.value}}
+        </i>
+          
+        </span> 
+       
+      </div>
+     
+      </div>
+
+    </mat-card>
+
+
+    <mat-card class="figure">
+
+      <div class="header">
+        <h4 class="title">Transactions en temps réel</h4>
+        <p class="category"></p>
+      </div>
+      <div class="line" #chartContainer>
+        <canvas #lineChart></canvas>
+      </div>
+      
+  
+     
+    
+      
+    </mat-card>
+  
+  
+
+    
+  </div>
+
+ 
+    <!--  <div class="header">
+        <h4 class="title">{{ title }}</h4>
+        <p class="category">{{ subtitle }}</p>
+      </div>
+      <div class="content">
+        <div [attr.id]="chartId" class="ct-chart {{ chartClass }}"></div>
+    
+        <div class="footer">
+          <div class="legend">
+            <span *ngFor="let item of legendItems">
+              <i [ngClass]="item.imageClass"></i> {{ item.title }}
+            </span>
+          </div>
+          <hr *ngIf="withHr">
+          <div class="stats">
+            <i [ngClass]="footerIconClass"></i> {{ footerText }}
+          </div>
+        </div>
+      </div> -->
+    <!--  <x-chartist 
+        [type]="type"
+        [data]="data"
+        [options]="options"
+        [events]="events" ></x-chartist> -->
+     
+
+  
+  
+
+
+  

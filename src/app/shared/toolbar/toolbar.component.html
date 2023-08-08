@@ -1,0 +1,80 @@
+
+  <div class="example-container">
+
+    <mat-toolbar class="example-toolbar toolbar-expand-lg bg-dark">
+      <a class="navbar-brand" href="/ompayment/home">
+        <img src="../../../assets/images/Logo-Trans.png" width="200" height="40" /></a>
+
+
+        <a  class="nav-item nav-link" *ngIf="(isLogged$ | async)  && (profil != 'AD')" href="/ompayment/chart">
+          <i class="pi pi-chart-line" style="font-size: 1.3rem; color: orange;"> Charts</i>
+        </a>
+        <div ngbDropdown class="d-inline-block" *ngIf="(isLogged$ | async)  && (profil == 'AD')">
+          <button id="dropdown1" ngbDropdownToggle pButton type="button" class="p-button-warning p-button-text" label="Stats" icon="pi pi-chart-line" > </button>
+          <div ngbDropdownMenu aria-labelledby="dropdown1">
+        
+            <!-- items as links -->
+            <a href="/ompayment/chart" ngbDropdownItem>Charts</a>
+            <a href="/ompayment/chart-synthese" ngbDropdownItem >Charts Synthese</a>
+             </div>
+        </div>
+
+        <a class="nav-item nav-link" *ngIf="(isLogged$ | async)" href="/ompayment/transactions">
+          <i class="pi pi-bookmark-fill" style="font-size: 1.3rem; color: red;"> Transactions</i>
+        </a>
+        <span class="example-spacer"></span>
+        
+   
+  <div class="form-inline my-0 my-lg-0">
+
+      <button  *ngIf="!(isLogged$ | async)" pButton type="button" class="p-button-success p-button-text" label="Connexion" icon="pi pi-sign-in" iconPos="right" (click)="login()"> </button>
+
+      <div ngbDropdown class="d-inline-block" *ngIf="(isLogged$ | async)  && (profil == 'AD')">
+
+      <a class="nav-item nav-link" *ngIf="(isLogged$ | async)" href="/ompayment/cashIn">
+        <i class="pi pi-bookmark-fill" style="font-size: 1.3rem; color: white;"> CashIn</i>
+      </a>
+      </div>
+  
+    <div ngbDropdown class="d-inline-block" *ngIf="(isLogged$ | async)  && (profil == 'AD')">
+
+     
+      <button id="dropdown2" ngbDropdownToggle pButton type="button" class="p-button-warning p-button-text" label="Gestion des utilisateurs" icon="pi pi-user-plus" > </button>
+     
+      <div ngbDropdownMenu aria-labelledby="dropdown2">
+    
+        <!-- items as links -->
+        <a href="/ompayment/register" ngbDropdownItem>Nouvel utilisateur</a>
+        <a href="/ompayment/user-management" ngbDropdownItem >Liste des utilisateurs</a>
+         </div>
+    </div>
+   
+   <!-- <button  *ngIf="isLogged$ | async"  pButton type="button" class="p-button-danger p-button-text" label="Deconnexion" icon="pi pi-sign-out" iconPos="right" (click)="logout()"> -->
+    
+    
+    <div ngbDropdown class="d-inline-block" *ngIf="(isLogged$ | async)">
+      <button id="dropdown3" ngbDropdownToggle pButton type="button" class="p-button p-button-text" label="Compte" icon="pi pi-user"> </button>
+     
+      <div ngbDropdownMenu aria-labelledby="dropdown3">
+    
+        <!-- items as links -->
+        <a href="/ompayment/profil" ngbDropdownItem>Profil</a>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem mat-button color="warn" (click)="logout()">Deconnexion</button>
+       
+         </div>
+    </div>
+
+
+   
+</div>
+    </mat-toolbar>
+    <mat-toolbar class=" title p-3 text-center">
+        <h1 class="mb-7 ">Plateforme de Paiement Orange Money</h1>
+        <img src="../../../assets/images/MicrosoftTeams-image.png" width="150" height="50" /> 
+    </mat-toolbar>
+     
+    
+   
+   
+  </div>
